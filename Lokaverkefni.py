@@ -31,31 +31,39 @@ for item in spil:
         break
 print("\nSpiunum hafa verið skipt í tvennt")
 
-byrjun = random.randint(1,2)
+svar = 1
+while svar == 1:
 
+    byrjun = random.randint(1,2)
 
-if byrjun == 1:
-    print("\nNotandi Byrjar")
-    print("Flokkar:"
-          "1. Þyngd"
-          "2. Mjolkurlagning"
-          "3. Ull"
-          "4. Afkvæmi"
-          "5. Einkun Læris"
-          "6. Frjósemi"
-          "7. Gerð/Þykkt Bakvöðva"
-          "8. Einkun fyrir malir")
-    val = int(input("Veldu flokk(1-8) til að keppst með: "))
+    if byrjun == 1:
+        print("\nNotandi Byrjar")
+        print("Flokkar:"
+              "1. Þyngd"
+              "2. Mjolkurlagning"
+              "3. Ull"
+              "4. Afkvæmi"
+              "5. Einkun Læris"
+              "6. Frjósemi"
+              "7. Gerð/Þykkt Bakvöðva"
+              "8. Einkun fyrir malir")
+        val = int(input("Veldu flokk(1-8) til að keppst með: "))
 
-    while val:
-        print("Notandinn: %s" % notandi[0])
-        print("Tölva: %s" % tolva[0])
-        if notandi[0][val] > tolva[0][val]:
-            print("Spil notandanns vann")
-            notandi.append(tolva[0])
-            tolva.remove(tolva[0])
-        else:
-            print("Spil Tölvunar vann")
-            tolva.append(notandi[0])
-            notandi.remove(notandi[0])
+        while val:
+            print("Notandinn: %s" % notandi[0])
+            print("Tölva: %s" % tolva[0])
+            if notandi[0][val] > tolva[0][val]:
+                print("Spil notandanns vann")
+                notandi.append(tolva[0])
+                tolva.remove(tolva[0])
+            else:
+                print("Spil Tölvunar vann")
+                tolva.append(notandi[0])
+                notandi.remove(notandi[0])
+            break
+    if len(notandi < 1) or len(tolva < 1):
+        svar = 0
         break
+
+    if byrjun == 2:
+        print("\nTölvan byrjar")
