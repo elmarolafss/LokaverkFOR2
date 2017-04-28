@@ -34,8 +34,12 @@ print("\nSpiunum hafa verið skipt í tvennt")
 svar = 1
 while svar == 1:
 
+    skiptaN = 26
+    skiptaT = 26
     byrjun = random.randint(1, 2)
     print(byrjun)
+
+
     if byrjun == 1:
         print("\nNotandi á leik")
         print("Flokkar:\n"
@@ -63,6 +67,8 @@ while svar == 1:
                 print("Spil Tölvunar vann")
                 tolva.append(notandi[0])
                 notandi.remove(notandi[0])
+                skiptaN -= 1
+                skiptaT += 1
             break
         if skiptaN == 0:
             svar = 0
