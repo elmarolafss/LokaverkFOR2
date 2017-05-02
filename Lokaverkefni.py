@@ -30,53 +30,253 @@ for item in spil:
     if counter == 26:
         break
 print("\nSpiunum hafa verið skipt í tvennt")
-
+byrjun = random.randint(1, 2)
 svar = 1
 while svar == 1:
 
-    skiptaN = 26
-    skiptaT = 26
-    byrjun = random.randint(1, 2)
-    print(byrjun)
-
-
+    templistjafnt = []
+    templistwin = []
     if byrjun == 1:
         print("\nNotandi á leik")
-        print("Flokkar:\n"
-              "1. Þyngd\n"
-              "2. Mjolkurlagning\n"
-              "3. Ull\n"
-              "4. Afkvæmi\n"
-              "5. Einkun Læris\n"
-              "6. Frjósemi\n"
-              "7. Gerð/Þykkt Bakvöðva\n"
-              "8. Einkun fyrir malir\n")
+        print("Þinn Hrútur:\n"
+              "Nafn: %s\n"
+              "1. Þyngd = %s\n"
+              "2. Mjolkurlagning = %s\n"
+              "3. Ull = %s\n"
+              "4. Afkvæmi = %s\n"
+              "5. Einkun Læris = %s\n"
+              "6. Frjósemi = %s\n"
+              "7. Gerð/Þykkt Bakvöðva = %s\n"
+              "8. Einkun fyrir malir = %s" % (notandi[0][0],notandi[0][1], notandi[0][2], notandi[0][3], notandi[0][4], notandi[0][5], notandi[0][6], notandi[0][7], notandi[0][8]))
         val = int(input("Veldu flokk(1-8) til að keppst með: "))
-        skiptaN = 26
-        skiptaT = 26
+
+
         while val:
-            print("Notandinn: %s" % notandi[0])
+            print("\nNotandinn: %s" % notandi[0])
             print("Tölva: %s" % tolva[0])
+            print("Notandi: %s vs Tölva: %s" % (notandi[0][val], tolva[0][val]))
             if notandi[0][val] > tolva[0][val]:
-                print("Spil notandanns vann")
-                notandi.append(tolva[0])
+                print("Spilið þitt vann")
+                templistwin.append(notandi[0])
+                templistwin.append(tolva[0])
                 tolva.remove(tolva[0])
-                skiptaN += 1
-                skiptaT -= 1
+                notandi.remove(notandi[0])
+                for i in templistwin:
+                    notandi.append(i)
+                for i in templistjafnt:
+                    notandi.append(i)
+                templistjafnt.clear()
+                templistwin.clear()
+                teljariN = 0
+                teljariT = 0
+                for i in notandi:
+                    teljariN += 1
+                for i in tolva:
+                    teljariT += 1
+                print("Fjöldi spila Notanda: %s" % teljariN)
+                print("Fjöldi spila Tölvu: %s" % teljariT)
+                twin = 0
+                nwin = 0
+                for i in tolva:
+                    twin += 1
+                for i in notandi:
+                    nwin += 1
+                if twin == 0:
+                    print("Þú vannst!")
+                    svar = 0
+                    break
+                if nwin == 0:
+                    print("Tölvan vann!")
+                    svar = 0
+                    break
+                if twin > 0 and nwin > 0:
+                    print("Ýttu á enter til að halda áfram")
+                    input()
+                    byrjun = 2
+            elif notandi[0][val] == tolva[0][val]:
+                print("Jafnt, sá sem vinnur næstu hönd fær spilin")
+                templistjafnt.append(notandi[0])
+                templistjafnt.append(tolva[0])
+                notandi.remove(notandi[0])
+                tolva.remove(tolva[0])
+                teljariN = 0
+                teljariT = 0
+                for i in notandi:
+                    teljariN += 1
+                for i in tolva:
+                    teljariT += 1
+                print("Fjöldi spila Notanda: %s" % teljariN)
+                print("Fjöldi spila Tölvu: %s" % teljariT)
+                twin = 0
+                nwin = 0
+                for i in tolva:
+                    twin += 1
+                for i in notandi:
+                    nwin += 1
+                if twin == 0:
+                    print("Þú vannst!")
+                    svar = 0
+                    break
+                if nwin == 0:
+                    print("Tölvan vann!")
+                    svar = 0
+                    break
+                if twin > 0 and nwin > 0:
+                    print("Ýttu á enter til að halda áfram")
+                    input()
+                    byrjun = 2
             else:
                 print("Spil Tölvunar vann")
-                tolva.append(notandi[0])
+                templistwin.append(notandi[0])
+                templistwin.append(tolva[0])
                 notandi.remove(notandi[0])
-                skiptaN -= 1
-                skiptaT += 1
+                tolva.remove(tolva[0])
+                for i in templistwin:
+                    tolva.append(i)
+                for i in templistjafnt:
+                    tolva.append(i)
+                templistjafnt.clear()
+                templistwin.clear()
+                teljariN = 0
+                teljariT = 0
+                for i in notandi:
+                    teljariN += 1
+                for i in tolva:
+                    teljariT += 1
+                print("Fjöldi spila Notanda: %s" % teljariN)
+                print("Fjöldi spila Tölvu: %s" % teljariT)
+                twin = 0
+                nwin = 0
+                for i in tolva:
+                    twin += 1
+                for i in notandi:
+                    nwin += 1
+                if twin == 0:
+                    print("Þú vannst!")
+                    svar = 0
+                    break
+                if nwin == 0:
+                    print("Tölvan vann!")
+                    svar = 0
+                    break
+                if twin > 0 and nwin > 0:
+                    print("Ýttu á enter til að halda áfram")
+                    input()
+                    byrjun = 2
             break
-        if skiptaN == 0:
-            svar = 0
-            break
-        elif skiptaT == 0:
-            svar = 0
-            break
-
     if byrjun == 2:
-        print("\nTölvan byrjar")
-        break
+        print("\nTölvan á leik")
+        tala = random.randint(1,8)
+        print("Tölvan hefur valið flokk %s" % tala)
+        print("Notandinn: %s" % notandi[0])
+        print("Tölva: %s" % tolva[0])
+        print("Notandi: %s vs Tölva: %s" % (notandi[0][tala], tolva[0][tala]))
+        if notandi[0][tala] > tolva[0][tala]:
+            print("Spilið þitt vann")
+            templistwin.append(notandi[0])
+            templistwin.append(tolva[0])
+            notandi.remove(notandi[0])
+            tolva.remove(tolva[0])
+            for i in templistwin:
+                notandi.append(i)
+            for i in templistjafnt:
+                notandi.append(i)
+            templistjafnt.clear()
+            templistwin.clear()
+            teljariN = 0
+            teljariT = 0
+            for i in notandi:
+                teljariN += 1
+            for i in tolva:
+                teljariT += 1
+            print("Fjöldi spila Notanda: %s" % teljariN)
+            print("Fjöldi spila Tölvu: %s" % teljariT)
+            twin = 0
+            nwin = 0
+            for i in tolva:
+                twin += 1
+            for i in notandi:
+                nwin += 1
+            if twin == 0:
+                print("Þú vannst!")
+                svar = 0
+                break
+            if nwin == 0:
+                print("Tölvan vann!")
+                svar = 0
+                break
+            if twin > 0 and nwin > 0:
+                print("Ýttu á enter til að halda áfram")
+                input()
+                byrjun = 1
+        elif notandi[0][tala] == tolva[0][tala]:
+            print("Jafnt, sá sem vinnur næstu hönd fær spilin")
+            templistjafnt.append(notandi[0])
+            templistjafnt.append(tolva[0])
+            notandi.remove(notandi[0])
+            tolva.remove(tolva[0])
+            teljariN = 0
+            teljariT = 0
+            for i in notandi:
+                teljariN += 1
+            for i in tolva:
+                teljariT += 1
+            print("Fjöldi spila Notanda: %s" % teljariN)
+            print("Fjöldi spila Tölvu: %s" % teljariT)
+            twin = 0
+            nwin = 0
+            for i in tolva:
+                twin += 1
+            for i in notandi:
+                nwin += 1
+            if twin == 0:
+                print("Þú vannst!")
+                svar = 0
+                break
+            if nwin == 0:
+                print("Tölvan vann!")
+                svar = 0
+                break
+            if twin > 0 and nwin > 0:
+                print("Ýttu á enter til að halda áfram")
+                input()
+                byrjun = 1
+        else:
+            print("Spil Tölvunar vann")
+            templistwin.append(notandi[0])
+            templistwin.append(templistwin[0])
+            notandi.remove(notandi[0])
+            tolva.remove(tolva[0])
+            for i in templistwin:
+                tolva.append(i)
+            for i in templistjafnt:
+                tolva.append(i)
+            templistwin.clear()
+            templistjafnt.clear()
+            teljariN = 0
+            teljariT = 0
+            for i in notandi:
+                teljariN += 1
+            for i in tolva:
+                teljariT += 1
+            print("Fjöldi spila Notanda: %s" % teljariN)
+            print("Fjöldi spila Tölvu: %s" % teljariT)
+            twin = 0
+            nwin = 0
+            for i in tolva:
+                twin += 1
+            for i in notandi:
+                nwin += 1
+            if twin == 0:
+                print("Þú vannst!")
+                svar = 0
+                break
+            if nwin == 0:
+                print("Tölvan vann!")
+                svar = 0
+                break
+            if twin > 0 and nwin > 0:
+                print("Ýttu á enter til að halda áfram")
+                input()
+                byrjun = 1
+
